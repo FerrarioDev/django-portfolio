@@ -1,10 +1,10 @@
 import './App.css';
-import HelloWorld from './components/HelloWorld';
+import ProjectList from './components/ProjecList';
 
 function App() {
   return (
     <div className='App'>
-      <HelloWorld />
+      <ProjectList />
     </div>
   );
 }

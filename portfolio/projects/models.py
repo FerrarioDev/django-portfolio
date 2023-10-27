@@ -6,7 +6,7 @@ class Project(models.Model):
     title = models.CharField(max_length=50)
     description = models.TextField()
     technologies = models.CharField( max_length=255)
-    Project_url = models.URLField(blank=True, null=True)
+    project_url = models.URLField(blank=True, null=True)
     github_url = models.URLField()
     image = models.ImageField(upload_to='project_images/')
     completion_date = models.DateField()
