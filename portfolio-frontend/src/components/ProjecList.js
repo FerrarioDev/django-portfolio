@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import api from '../services/api';
 
 function ProjectList() {
     const [projects, setProjects] = useState([]);
-    const [loading, setLoading] = useState(true); 
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         async function fetchProjects() {
             try {
                 const response = await api.get('projects/');
-                console.log('API Response:', response.data);
                 setProjects(response.data);
                 setLoading(false);
             } catch (error) {
                 console.error('Error fetching projects: ', error);
+                setError(error);
                 setLoading(false);
             }
         }
@@ -24,13 +25,19 @@ function ProjectList() {
     return (
         <div>
             <h2>Projects</h2>
-            {Array.isArray(projects) && projects.length > 0 ? (
-                    projects.map((project) => (
+            {loading ? (
+                <p>Loading projects...</p>
+            ) : error ? (
+                <p>Error fetching projects: {error.message}</p>
+            ) : Array.isArray(projects) && projects.length > 0 ? (
+                <ul>
+                    {projects.map((project) => (
                         <li key={project.id}>{project.title}</li>
-                    ))
-                ) : (
-                    <p>No projects available</p>
-                )}
+                    ))}
+                </ul>
+            ) : (
+                <p>No projects available</p>
+            )}
         </div>
     );
 }

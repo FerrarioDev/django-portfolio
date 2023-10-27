@@ -50,12 +50,14 @@ INSTALLED_APPS = [
 ]
 
 # CORS settings
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000',
+)
 CORS_ALLOWED_ORIGINS  = [
     'http://localhost:3000',
 ] 
 CORS_ALLOW_ALL_ORIGINS = True 
-CORS_ALLOW_CREDENTIALS = True  
-CORS_ALLOW_METHODS = ['GET', 'OPTIONS', 'POST', 'PUT', 'DELETE'] 
+CORS_ALLOW_CREDENTIALS = True 
 
 # REST settings
 REST_FRAMEWORK = {
